@@ -17,10 +17,10 @@
 
 ##### API кейсы
 1. Проверка на получение существующего проекта
-  GET /projects/view/1
-2. Проверка на получение страницы с документацией
-  GET /projects/docs/1
+  GET /projects/{project_id}
+2. Проверка на получение существующего рана
+  GET /runs/{run_id}
 3. Проверка невозможности получения несуществующего проекта
-  GET /projects/view/7
-4. Проверка возможности создания проекта
-  POST /admin/projects/render_create
+  GET /projects/{project_id}
+4. Проверка возможности добавления рана
+  POST /projects/{project_id}/automation/runs
