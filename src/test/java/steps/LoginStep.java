@@ -1,6 +1,7 @@
 package steps;
 
 import base.BaseStep;
+import models.Users;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 import pages.ProjectsPage;
@@ -12,13 +13,13 @@ public class LoginStep extends BaseStep {
         super(driver);
     }
 
-    public ProjectsPage successLogin(String email, String password){
-        loginPage.login(email, password);
+    public ProjectsPage successLogin(Users users){
+        loginPage.login(users);
         return projectsPage;
     }
 
     public LoginPage negativeLogin(String email, String password){
-        loginPage.login(email, password);
+        loginPage.loginNegative(email, password);
         return loginPage;
     }
     public String errorText(){
