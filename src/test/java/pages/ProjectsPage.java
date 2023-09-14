@@ -52,6 +52,11 @@ public class ProjectsPage extends BasePage {
         return new DialogBorder(driver, dialogBorderLocator);
     }
 
+    public WebElement SummaryInput()
+    {
+        return driver.findElement(borderDialogInputTextLocator);
+    }
+
 
 
 

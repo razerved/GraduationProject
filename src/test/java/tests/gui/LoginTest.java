@@ -30,13 +30,14 @@ public class LoginTest extends BaseTest {
         Assert.assertFalse(loginStep.errorText().equals("The email must be a valid email address."));
     }
 
-//    @Test(description = "Проверка поля на граничные значения")
-//    public void test3() {
-//        var expectedSummary = "1111111111111111111111111111111111111111111111111111111111111111111111111111111";
-//        var actualSummary = "11111111111111111111111111111111111111111111111111111111111111111111111111111112";
-//        var projectsPage = new ProjectsPage(driver);
-//        loginStep.successLogin(DataHelper.getUser());
-//        projectsPage.getAddProject().click();
+    @Test(description = "Проверка поля на граничные значения")
+    public void test3() {
+        var expectedSummary = "1111111111111111111111111111111111111111111111111111111111111111111111111111111";
+        var actualSummary = "11111111111111111111111111111111111111111111111111111111111111111111111111111112";
+        var projectsPage = new ProjectsPage(driver);
+        loginStep.successLogin(DataHelper.getUser());
+        projectsPage.getAddProject().click();
+        
 
     }
     }
