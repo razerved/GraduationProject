@@ -24,6 +24,7 @@ public class ProjectsPage extends BasePage {
     private final By borderAddProjectLocator = By.cssSelector("button.ui.button.primary");
     private final By borderCancelProjectLocator = By.cssSelector("button.ui.button.dialog-hide");
     private final By borderInputFileLocator = By.xpath("//input[@type='file']");
+    private elements.DialogBorder DialogBorder;
 
 
     public ProjectsPage(WebDriver driver) {
@@ -50,6 +51,8 @@ public class ProjectsPage extends BasePage {
     public DialogBorder getDialogBorder(){
         return new DialogBorder(driver, dialogBorderLocator);
     }
+
+
 
 
 
