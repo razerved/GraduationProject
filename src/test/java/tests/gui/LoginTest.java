@@ -33,11 +33,16 @@ public class LoginTest extends BaseTest {
     @Test(description = "Проверка поля на граничные значения")
     public void test3() {
         var expectedSummary = "1111111111111111111111111111111111111111111111111111111111111111111111111111111";
-        var actualSummary = "11111111111111111111111111111111111111111111111111111111111111111111111111111112";
+        var actualSummary = "111111111111111111111111111111111111111111111111111111111111111111111111111111112";
         var projectsPage = new ProjectsPage(driver);
+
         loginStep.successLogin(DataHelper.getUser());
         projectsPage.getAddProject().click();
-        
+        projectsPage.waitProjectDialogWindow().isDisplayed();
+        projectsPage.summaryInput().sendKeys(actualSummary);
+      //  Assert.assertTrue();
+
+
 
     }
     }
