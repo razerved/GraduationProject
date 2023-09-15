@@ -40,9 +40,8 @@ public class LoginTest extends BaseTest {
         projectsPage.getAddProject().click();
         projectsPage.waitProjectDialogWindow().isDisplayed();
         projectsPage.summaryInput().sendKeys(actualSummary);
-      //  Assert.assertTrue();
 
+           // Assert.assertEquals(projectsPage.SummaryInputDialog().equals());
+        }
 
-
-    }
     }
