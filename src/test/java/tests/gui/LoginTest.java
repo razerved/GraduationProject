@@ -3,17 +3,18 @@ package tests.gui;
 import base.BaseTest;
 import configuration.ReadProperties;
 import dataHelper.DataHelper;
-import elements.DialogBorder;
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
-import models.Users;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.LoginPage;
 import pages.ProjectsPage;
 
 public class LoginTest extends BaseTest {
 
+    private BaseTest baseTest;
+    protected LoginPage loginPage;
+    protected ProjectsPage projectsPage;
 
     @Test(description = "Кейс Авторизация")
     @Description("Positive login test")
@@ -34,7 +35,7 @@ public class LoginTest extends BaseTest {
     public void test3() {
         var expectedSummary = "1111111111111111111111111111111111111111111111111111111111111111111111111111111";
         var actualSummary = "111111111111111111111111111111111111111111111111111111111111111111111111111111112";
-        var projectsPage = new ProjectsPage(driver);
+        projectsPage = new ProjectsPage(driver);
 
         loginStep.successLogin(DataHelper.getUser());
         projectsPage.getAddProject().click();
@@ -43,5 +44,26 @@ public class LoginTest extends BaseTest {
 
            // Assert.assertEquals(projectsPage.SummaryInputDialog().equals());
         }
+
+    @Test(description = "Проверка возможности создания проекта")
+    public void test4(){
+        projectsPage = new ProjectsPage(driver);
+
+        loginStep.successLogin(DataHelper.getUser());
+        projectsPage.getAddProject().click();
+        projectsPage.waitProjectDialogWindow().isDisplayed();
+        projectsPage.waitProjectDialogWindow().sendKeys("first");
+        projectsPage.submitButton().click();
+        Assert.assertTrue(projectsPage.waitProjectDialogWindow() != null);
+    }
+
+    @Test(description = "Проверка возможности удаления проекта")
+    public void test5(){
+        projectsPage = new ProjectsPage(driver);
+
+        loginStep.successLogin(DataHelper.getUser());
+    }
+
+
 
     }

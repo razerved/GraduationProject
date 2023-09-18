@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class ProjectsPage extends BasePage {
+
     private final static String pagePath ="yaninalondon.testmo.net";
     private final By addProjectLocator = By.cssSelector(".ui.basic.compact.button");
     private final By boardAllProjectsLocator = By.cssSelector("tr div a");
@@ -24,6 +25,7 @@ public class ProjectsPage extends BasePage {
     private final By borderAddProjectLocator = By.cssSelector("button.ui.button.primary");
     private final By borderCancelProjectLocator = By.cssSelector("button.ui.button.dialog-hide");
     private final By borderInputFileLocator = By.xpath("//input[@type='file']");
+    private final By pageHeaderLocator = By.cssSelector("div.page-header__title");
     private elements.DialogBorder DialogBorder;
 
 
@@ -32,14 +34,15 @@ public class ProjectsPage extends BasePage {
     }
 
 
+
     @Override
     protected By getPageIdentifier() {
-        return null;
+        return By.cssSelector("div.page-title__title");
     }
 
 
     public WebElement getAddProject(){
-        return driver.findElement(addProjectLocator);
+        return waitService.waitForExists(addProjectLocator);
     }
     public List<WebElement> getBoardAllProjects(){
         return driver.findElements(boardAllProjectsLocator);
@@ -62,6 +65,14 @@ public class ProjectsPage extends BasePage {
     public WebElement waitProjectDialogWindow(){
         return waitService.waitForExists(borderDialogInputNameLocator);
     }
+
+    public WebElement submitButton(){
+        return driver.findElement(borderAddProjectLocator);
+    }
+    public WebElement getPageHeaderLocator(){
+        return waitService.waitForVisibility(pageHeaderLocator);
+    }
+
 
 
 
