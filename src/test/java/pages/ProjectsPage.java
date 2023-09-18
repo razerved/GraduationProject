@@ -55,18 +55,27 @@ public class ProjectsPage extends BasePage {
     {
         return driver.findElement(borderDialogInputTextLocator);
     }
-    public String SummaryInputDialog()
+
+    /**
+     * textarea - специфичен, знаю только, что можно вытащить с помощью JS ( ИМХО )
+     * @return
+     */
+    /*public String SummaryInputDialog()
     {
         return driver.findElement(borderDialogInputTextLocator).getAttribute("value");
-    }
+    }*/
+
     public WebElement waitProjectDialogWindow(){
         return waitService.waitForExists(borderDialogInputNameLocator);
     }
 
+    public WebElement setNameProject(){
+        return  driver.findElement(borderDialogInputNameLocator);
+    }
 
-
-
-
+    public WebElement getDropDownMenu(){
+        return driver.findElement(borderDropDownLocator);
+    }
 
 
 }

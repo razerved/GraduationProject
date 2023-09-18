@@ -3,21 +3,19 @@ package tests.gui;
 import base.BaseTest;
 import configuration.ReadProperties;
 import dataHelper.DataHelper;
-import elements.DialogBorder;
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
-import models.Users;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.ProjectsPage;
 
+
+//ToDo изменить название LoginTest на общие Тесты
 public class LoginTest extends BaseTest {
 
 
     @Test(description = "Кейс Авторизация")
     @Description("Positive login test")
-    public void test() {
+    public void test1() {
         loginStep.successLogin(DataHelper.getUser());
     }
 
@@ -30,18 +28,66 @@ public class LoginTest extends BaseTest {
         Assert.assertFalse(loginStep.errorText().equals("The email must be a valid email address."));
     }
 
-    @Test(description = "Проверка поля на граничные значения")
+
+    //ToDo: Подумать над тестами на Граничные (желательно использовать Параметризированный тест )
+    @Test(description = "Проверка поля на граничные значения 80")
     public void test3() {
-        var expectedSummary = "1111111111111111111111111111111111111111111111111111111111111111111111111111111";
-        var actualSummary = "111111111111111111111111111111111111111111111111111111111111111111111111111111112";
-        var projectsPage = new ProjectsPage(driver);
+        var actualSummary = "11111111111111111111111111111111111111111" +
+                "111111111111111111111111111111111111111";
 
         loginStep.successLogin(DataHelper.getUser());
-        projectsPage.getAddProject().click();
-        projectsPage.waitProjectDialogWindow().isDisplayed();
-        projectsPage.summaryInput().sendKeys(actualSummary);
+        projectsStep.setSummaryText(actualSummary);
 
-           // Assert.assertEquals(projectsPage.SummaryInputDialog().equals());
-        }
+        String expectedSummary = projectsStep.getSummaryInputDialog();
+
+        Assert.assertTrue(actualSummary.equals(expectedSummary), "кол-во введенных символов различается");
+    }
+
+    @Test(description = "Проверка поля на граничные значения 80 + 1")
+    public void test4() {
+        var actualSummary = "11111111111111111111111111111111111111111" +
+                "1111111111111111111111111111111111111112";
+
+        loginStep.successLogin(DataHelper.getUser());
+        projectsStep.setSummaryText(actualSummary);
+
+        String expectedSummary = projectsStep.getSummaryInputDialog();
+
+        Assert.assertFalse(actualSummary.equals(expectedSummary), "кол-во введенных символов различается");
+    }
+
+    @Test(description = "Проверка поля на граничные значения 0")
+    public void test5() {
+        var actualSummary = "";
+
+        loginStep.successLogin(DataHelper.getUser());
+        projectsStep.setSummaryText(actualSummary);
+
+        String expectedSummary = projectsStep.getSummaryInputDialog();
+
+        Assert.assertTrue(expectedSummary.equals(""), "кол-во введенных символов различается");
+    }
+
+
+
+    //ToDo: Дописать тесты на Создание и Удаление "Проекта"
+    @Test(description = "Добавление нового Проекта")
+    public void test6() {
+
+        loginStep.successLogin(DataHelper.getUser());
+        projectsStep.addNewProjectWhitOutSummary("OurNewProject");
+
 
     }
+
+    @Test(description = "Удаление нового Проекта")
+    public void test7() {
+
+        loginStep.successLogin(DataHelper.getUser());
+        projectsStep.addNewProjectWhitOutSummary("OurNewProject");
+
+
+    }
+
+
+}

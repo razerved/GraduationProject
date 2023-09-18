@@ -2,17 +2,21 @@ package base;
 
 import configuration.ReadProperties;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import services.WaitService;
 
 public abstract class BasePage {
     public WebDriver driver;
     protected WaitService waitService;
+    protected JavascriptExecutor js;
 
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
         this.waitService = new WaitService(driver);
+
+        js = (JavascriptExecutor) driver;
 
     }
 
