@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class ProjectsPage extends BasePage {
-
     private final static String pagePath ="yaninalondon.testmo.net";
     private final By addProjectLocator = By.cssSelector(".ui.basic.compact.button");
     private final By boardAllProjectsLocator = By.cssSelector("tr div a");
@@ -25,14 +24,12 @@ public class ProjectsPage extends BasePage {
     private final By borderAddProjectLocator = By.cssSelector("button.ui.button.primary");
     private final By borderCancelProjectLocator = By.cssSelector("button.ui.button.dialog-hide");
     private final By borderInputFileLocator = By.xpath("//input[@type='file']");
-    private final By pageHeaderLocator = By.cssSelector("div.page-header__title");
     private elements.DialogBorder DialogBorder;
 
 
     public ProjectsPage(WebDriver driver) {
         super(driver);
     }
-
 
 
     @Override
@@ -58,14 +55,14 @@ public class ProjectsPage extends BasePage {
     {
         return driver.findElement(borderDialogInputTextLocator);
     }
-    public String SummaryInputDialog()
-    {
-        return driver.findElement(borderDialogInputTextLocator).getAttribute("value");
-    }
+
     public WebElement waitProjectDialogWindow(){
         return waitService.waitForExists(borderDialogInputNameLocator);
     }
 
+    public WebElement setNameProject(){
+        return  driver.findElement(borderDialogInputNameLocator);
+    }
     public WebElement submitButton(){
         return driver.findElement(borderAddProjectLocator);
     }
@@ -76,8 +73,12 @@ public class ProjectsPage extends BasePage {
 
 
 
+    public WebElement getDropDownMenu(){
+        return driver.findElement(borderDropDownLocator);
+    }
 
-
-
+    public WebElement getBorderAddProjectLButton(){
+        return driver.findElement(borderAddProjectLocator);
+    }
 
 }

@@ -2,6 +2,7 @@ package base;
 
 import configuration.ReadProperties;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import pages.ProjectsPage;
 import services.WaitService;
