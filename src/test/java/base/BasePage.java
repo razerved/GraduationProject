@@ -9,14 +9,11 @@ import services.WaitService;
 public abstract class BasePage {
     public WebDriver driver;
     protected WaitService waitService;
-    protected JavascriptExecutor js;
 
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
         this.waitService = new WaitService(driver);
-
-        js = (JavascriptExecutor) driver;
 
     }
 

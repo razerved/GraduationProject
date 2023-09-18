@@ -39,7 +39,7 @@ public class ProjectsStep extends BaseStep {
         projectsPage.getAddProject().click();
         projectsPage.waitProjectDialogWindow().isDisplayed();
         projectsPage.setNameProject().sendKeys(nameProject);
-        projectsPage.getDropDownMenu().click();
+        projectsPage.getBorderAddProjectLButton().click();
 
     }
 
