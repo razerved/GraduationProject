@@ -1,14 +1,12 @@
 package models;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Data
-@Builder
+//@Builder
 public class Users {
 
-    private int id;
-    private String name;
     private String email;
+    private String password;
 
 }

@@ -49,7 +49,6 @@ public class BrowserFactory {
     public ChromeOptions getChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
 
-        chromeOptions.setHeadless(false);
         chromeOptions.addArguments("--disable-gpu");
         chromeOptions.addArguments("--ignore-certificate-errors");
         chromeOptions.addArguments("--silent");
@@ -62,7 +61,6 @@ public class BrowserFactory {
     public FirefoxOptions getFirefoxOptions() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
 
-        firefoxOptions.setHeadless(false);
         firefoxOptions.addArguments("--disable-gpu");
         firefoxOptions.addArguments("--ignore-certificate-errors");
         firefoxOptions.addArguments("--silent");
