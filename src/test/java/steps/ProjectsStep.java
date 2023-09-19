@@ -43,6 +43,15 @@ public class ProjectsStep extends BaseStep {
 
     }
 
+    public boolean createNewProject(String nameProject){
+        projectsPage.getAddProject().click();
+        projectsPage.waitProjectDialogWindow().isDisplayed();
+        projectsPage.waitProjectDialogWindow().sendKeys(nameProject);
+        projectsPage.submitButton().click();
+        return projectsPage.getCreateProject().isDisplayed();
+
+    }
+
 
 
 

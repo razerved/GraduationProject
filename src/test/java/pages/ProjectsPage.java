@@ -5,6 +5,7 @@ import elements.DialogBorder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import wrappers.Input;
 
 import java.util.List;
 
@@ -24,6 +25,10 @@ public class ProjectsPage extends BasePage {
     private final By borderAddProjectLocator = By.cssSelector("button.ui.button.primary");
     private final By borderCancelProjectLocator = By.cssSelector("button.ui.button.dialog-hide");
     private final By borderInputFileLocator = By.xpath("//input[@type='file']");
+    private final By pageHeaderLocator = By.cssSelector("div.dialog__header__content__title");
+
+    private final By createProjectLocator = By.cssSelector("div.page-header__title");
+
     private elements.DialogBorder DialogBorder;
 
 
@@ -71,8 +76,6 @@ public class ProjectsPage extends BasePage {
     }
 
 
-
-
     public WebElement getDropDownMenu(){
         return driver.findElement(borderDropDownLocator);
     }
@@ -80,5 +83,7 @@ public class ProjectsPage extends BasePage {
     public WebElement getBorderAddProjectLButton(){
         return driver.findElement(borderAddProjectLocator);
     }
-
-}
+    public WebElement getCreateProject(){
+        return waitService.waitForExists(createProjectLocator);
+    }
+    }

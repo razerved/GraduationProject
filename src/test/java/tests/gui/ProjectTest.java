@@ -6,9 +6,11 @@ import dataHelper.DataHelper;
 import dataHelper.StaticProvider;
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
+import wrappers.Input;
 
 
 public class ProjectTest extends BaseTest {
@@ -43,6 +45,12 @@ public class ProjectTest extends BaseTest {
         Assert.assertTrue(summary.equals(expectedSummary), "кол-во введенных символов различается");
     }
 
+    @Test(description = "Проверка возможности создания проекта")
+    public void checkCreateNewProject() {
 
+        loginStep.successLogin(DataHelper.getUser());
+        boolean isCreated = projectsStep.createNewProject("first");
+        Assert.assertTrue(isCreated);
 
+    }
 }

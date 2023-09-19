@@ -90,21 +90,10 @@ public class LoginTest extends BaseTest {
     }
 
 
-    @Test(description = "Проверка возможности создания проекта")
-    public void test4(){
-        projectsPage = new ProjectsPage(driver);
 
-        loginStep.successLogin(DataHelper.getUser());
-        projectsPage.getAddProject().click();
-        projectsPage.waitProjectDialogWindow().isDisplayed();
-        projectsPage.waitProjectDialogWindow().sendKeys("first");
-        projectsPage.submitButton().click();
-        Assert.assertTrue(projectsPage.waitProjectDialogWindow() != null);
-    }
 
     @Test(description = "Проверка возможности удаления проекта")
-    public void test5(){
-        projectsPage = new ProjectsPage(driver);
+    public void checkDeleteProject(){
 
         loginStep.successLogin(DataHelper.getUser());
     }
