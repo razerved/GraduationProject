@@ -53,4 +53,12 @@ public class ProjectTest extends BaseTest {
         Assert.assertTrue(isCreated);
 
     }
+    @Test(description = "Проверка возможности удаления проекта")
+    public void checkDeleteProject() {
+
+        loginStep.successLogin(DataHelper.getUser());
+        boolean isCreated = projectsStep.createNewProject("first");
+        Assert.assertTrue(isCreated);
+
+    }
 }
