@@ -1,6 +1,7 @@
 package base;
 
 import configuration.ReadProperties;
+import dataHelper.DataHelper;
 import factory.BrowserFactory;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -31,6 +32,8 @@ public class BaseTest {
         js = (JavascriptExecutor) driver;
 
         driver.get(ReadProperties.getUrl());
+
+        loginStep.successLogin(DataHelper.getUser());
     }
 
     public static void setDriverToContext(ITestContext iTestContext, WebDriver driver){
