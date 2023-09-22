@@ -2,6 +2,8 @@ package steps;
 
 import base.BaseStep;
 import elements.DialogBorder;
+import models.Project;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class ProjectsStep extends BaseStep {
@@ -11,31 +13,33 @@ public class ProjectsStep extends BaseStep {
     }
 
 
-    public void choseProject(int project){
+    public void choseProject(int project) {
         projectsPage.getBoardAllProjects().get(project).click();
     }
-    public DialogBorder dialogBorderCheckout(){
+
+    public DialogBorder dialogBorderCheckout() {
         projectsPage.getDialogBorder();
         return dialogBorderCheckout();
     }
 
-    public String getSummaryInputDialog(){
+    public String getSummaryInputDialog() {
         return (String) js.executeScript("return document.getElementsByTagName('textarea')[0].value");
     }
 
-    public void setSummaryText(String summary){
+    public void setSummaryText(String summary) {
         projectsPage.getAddProject().click();
         projectsPage.waitProjectDialogWindow().isDisplayed();
         projectsPage.summaryInput().sendKeys(summary);
     }
-    public void addNewProjectWhitSummary(String nameProject, String summary){
+
+    public void addNewProjectWhitSummary(String nameProject, String summary) {
         projectsPage.getAddProject().click();
         projectsPage.waitProjectDialogWindow().isDisplayed();
         projectsPage.setNameProject().sendKeys(nameProject);
         projectsPage.summaryInput().sendKeys(summary);
     }
 
-    public void addNewProjectWhitOutSummary(String nameProject){
+    public void addNewProjectWhitOutSummary(String nameProject) {
         projectsPage.getAddProject().click();
         projectsPage.waitProjectDialogWindow().isDisplayed();
         projectsPage.setNameProject().sendKeys(nameProject);
@@ -43,7 +47,7 @@ public class ProjectsStep extends BaseStep {
 
     }
 
-    public boolean createNewProject(String nameProject){
+    public boolean createNewProject(String nameProject) {
         projectsPage.getAddProject().click();
         projectsPage.waitProjectDialogWindow().isDisplayed();
         projectsPage.waitProjectDialogWindow().sendKeys(nameProject);
@@ -51,8 +55,41 @@ public class ProjectsStep extends BaseStep {
         return projectsPage.getCreateProject().isDisplayed();
 
     }
+    public boolean createNewProjectNegative(String nameProject) {
+        projectsPage.getAddProject().click();
+        projectsPage.waitProjectDialogWindow().isDisplayed();
+        projectsPage.waitProjectDialogWindow().sendKeys(nameProject);
+        projectsPage.submitButton().click();
+        return  projectsPage.getEmptyProjectNameLocator().isDisplayed();
 
+    }
 
+//    public boolean deleteProject(String nameProject) {
+//        projectsPage.getAddProject().click();
+//        projectsPage.waitProjectDialogWindow().isDisplayed();
+//        projectsPage.waitProjectDialogWindow().sendKeys(nameProject);
+//        projectsPage.submitButton().click();
+//        projectsPage.deleteIcon().click();
+//        projectsPage.deleteProjectModalWindow().isDisplayed();
+//        projectsPage.deleteCheckBox().click();
+//        projectsPage.confirmDeleteProjectButton().click();
+//        return projectsPage.projectDeletionProcess().isDisplayed();
 
+public String deleteProject(Project project, String nameProject){
+    projectsPage.getAddProject().click();
+    projectsPage.waitProjectDialogWindow().isDisplayed();
+    projectsPage.waitProjectDialogWindow().sendKeys(nameProject);
+    projectsPage.submitButton().click();
+    var tableRow = projectsPage.getTableRowProjectName(project.getName());
+    var projectId = tableRow.getAttribute("data-id");
+    var deleteIcon = tableRow.findElement((By)projectsPage.deleteIcon());
+    deleteIcon.click();
+
+    projectsPage.deleteCheckBox().click();
+    projectsPage.confirmDeleteProjectButton().click();
+
+    return projectId;
 
 }
+
+    }

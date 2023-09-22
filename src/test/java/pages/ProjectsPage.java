@@ -5,6 +5,7 @@ import elements.DialogBorder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import wrappers.Button;
 import wrappers.Input;
 
 import java.util.List;
@@ -28,6 +29,13 @@ public class ProjectsPage extends BasePage {
     private final By pageHeaderLocator = By.cssSelector("div.dialog__header__content__title");
 
     private final By createProjectLocator = By.cssSelector("div.page-header__title");
+    private final By deleteIconLocator = By.xpath("//div[@data-action='delete' and @class='tooltip']");
+    private final By deleteCheckboxLocator = By.xpath("//label[@data-target='confirmationLabel']");
+    private final By deleteProjectModalWindowLocator =
+            By.xpath(".//div[@dialog__header__content__title and @data-target='title']");
+    private final By confirmDeleteProjectButtonLocator = By.xpath(("//button[@data-target='deleteButton']"));
+    private final By projectDeletionProcessLocator = By.xpath(".//div[contains(@class, 'default-hidden')]");
+    private final By emptyProjectNameLocator = By.xpath("//li[text()='The name field is required.']");
 
     private elements.DialogBorder DialogBorder;
 
@@ -86,4 +94,28 @@ public class ProjectsPage extends BasePage {
     public WebElement getCreateProject(){
         return waitService.waitForExists(createProjectLocator);
     }
+    public WebElement deleteIcon(){
+        return waitService.waitForVisibility(deleteIconLocator);
     }
+    public WebElement deleteProjectModalWindow(){
+        return waitService.waitForVisibility(deleteProjectModalWindowLocator);
+    }
+    public WebElement deleteCheckBox(){
+        return waitService.waitForVisibility(deleteCheckboxLocator);
+    }
+    public Button confirmDeleteProjectButton(){
+        return new Button(driver, confirmDeleteProjectButtonLocator);
+    }
+    public WebElement getTableRowProjectName(String nameProject){
+        return driver.findElement(By.xpath("//tr[@data-name='{nameProject}']"));
+    }
+    public WebElement findProjectDeletionProcess(String projectId){
+        return waitService.waitForVisibility
+                (By.xpath("//tr[@data-id='{projectId}']/td[4]/div[contains(@class, 'default-hidden')]"));
+
+    }
+    public WebElement getEmptyProjectNameLocator(){
+        return waitService.waitForVisibility(emptyProjectNameLocator);
+    }
+
+}

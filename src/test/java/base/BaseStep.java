@@ -9,7 +9,7 @@ public class BaseStep {
 
     protected WebDriver driver;
     protected LoginPage loginPage;
-    protected ProjectsPage projectsPage;
+    public ProjectsPage projectsPage;
     protected JavascriptExecutor js;
 
 

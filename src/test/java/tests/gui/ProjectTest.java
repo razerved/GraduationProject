@@ -6,6 +6,7 @@ import dataHelper.DataHelper;
 import dataHelper.StaticProvider;
 import io.qameta.allure.Description;
 import io.qameta.allure.Issue;
+import models.Project;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -51,14 +52,31 @@ public class ProjectTest extends BaseTest {
         loginStep.successLogin(DataHelper.getUser());
         boolean isCreated = projectsStep.createNewProject("first");
         Assert.assertTrue(isCreated);
-
     }
-    @Test(description = "Проверка возможности удаления проекта")
-    public void checkDeleteProject() {
 
+    @Test(description = "Проверка невозможности создания проекта с пустым названием")
+    @Description("Negative create project")
+    public void checkCreateNewProjectNegative(){
         loginStep.successLogin(DataHelper.getUser());
-        boolean isCreated = projectsStep.createNewProject("first");
-        Assert.assertTrue(isCreated);
-
+        boolean isDisplayed = projectsStep.createNewProjectNegative("     ");
+        Assert.assertTrue(isDisplayed);
     }
+
+
+//    @Test(description = "Проверка возможности удаления проекта")
+//    public void checkDeleteProject() {
+//
+//        loginStep.successLogin(DataHelper.getUser());
+//        projectsStep.createNewProject("second");
+//        boolean isDeleted = projectsStep.deleteProject("second");
+//        Assert.assertTrue(isDeleted);
+
+//    @Test(description = "Проверка возможности удаления проекта")
+//    public void checkDeleteProject() {
+//        loginStep.successLogin(DataHelper.getUser());
+//        var project = projectsStep.createNewProject("second");
+//        var projectId = projectsStep.deleteProject(project, nameProject);
+//        var deleteIcon = projectsStep.projectsPage.findProjectDeletionProcess(projectId);
+//        Assert.assertTrue(deleteIcon != null);
+//    }
 }
