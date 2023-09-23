@@ -96,8 +96,9 @@ public class ProjectsStep extends BaseStep {
     public void openAddProjectDialogWindow() {
         projectsPage.addProjectClick();
     }
-
-
+    public boolean checkSuccessUpload() {
+        return projectsPage.getProjectImage().getAttribute("src").contains("attachments");
+    }
 
     public void uploadImage(String pathToFile) {
         projectsPage.getAddProject().click();
@@ -106,17 +107,10 @@ public class ProjectsStep extends BaseStep {
         projectsPage.getFileUpload().sendKeys(pathToFile);
     }
 
-
-    private static final String fileName = "anime-art-210822-1-576x1024.jpg";
-    private String initFilePath() {
-        String pathToFile = ProjectTest.class.getClassLoader().getResource(fileName).getPath();
-        return pathToFile.substring(1, pathToFile.length());
-    }
     public void initProjectFields(Project project) {
         projectsPage.getProjectNameLocator().sendKeys(project.getName());
         uploadImage(project.getImagePath());
         projectsPage.getBorderAddProjectLButton().click();
     }
-
 
 }

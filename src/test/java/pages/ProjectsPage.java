@@ -41,6 +41,7 @@ public class ProjectsPage extends BasePage {
     private final By fileUploadLocator = By.xpath("//input[@type='file']");
     private final By createProjectDialogWindowLocator = By.xpath("//*[@class='dialog']");
     private final By projectNameLocator = By.xpath("//input[@placeholder='Project name']");
+    private final By addProjectButtonLocator = By.xpath("//*[@class='ui basic compact button']");
     private elements.DialogBorder DialogBorder;
 
 
@@ -135,7 +136,7 @@ public class ProjectsPage extends BasePage {
     }
 
     public WebElement getUploadImageWindow() {
-        return waitService.waitForExists(uploadImageWindowLocator);
+        return driver.findElement(uploadImageWindowLocator);
     }
 
     public WebElement getProjectImage() {
@@ -146,18 +147,17 @@ public class ProjectsPage extends BasePage {
         return waitService.waitForExists(fileUploadLocator);
     }
 
-    public boolean checkSuccessUpload() {
-        return getProjectImage().getAttribute("src").contains("attachments");
-    }
-
     public WebElement getCreateProjectDialogWindowLocator() {
         return waitService.waitForExists(createProjectDialogWindowLocator);
     }
     public void addProjectClick() {
-        getBorderAddProjectLButton().click();
+        getAddProjectButtonLocator().click();
     }
     public WebElement getProjectNameLocator() {
         return waitService.waitForExists(projectNameLocator);
+    }
+    public WebElement getAddProjectButtonLocator(){
+        return waitService.waitForExists(addProjectButtonLocator);
     }
 
 }

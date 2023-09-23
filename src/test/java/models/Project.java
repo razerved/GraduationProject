@@ -3,7 +3,7 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
+//@Builder
 public class Project {
     protected String name;
     protected String summary;

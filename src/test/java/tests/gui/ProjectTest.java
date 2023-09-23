@@ -15,7 +15,11 @@ import wrappers.Input;
 
 
 public class ProjectTest extends BaseTest {
-
+    private static final String fileName = "anime-art-210822-1-576x1024.jpg";
+    private String initFilePath() {
+        String pathToFile = ProjectTest.class.getClassLoader().getResource(fileName).getPath();
+        return pathToFile.substring(1, pathToFile.length());
+    }
 
     @Test(description = "Кейс Авторизация")
     @Description("Positive login test")
@@ -80,12 +84,12 @@ public class ProjectTest extends BaseTest {
 //        Assert.assertTrue(deleteIcon != null);
 //    }
 
-@Test(description = "Тест на загрузку файла изображения во время создания проекта", groups = "positive")
+@Test(description = "Тест на загрузку файла")
 public void checkUploadFileTest() {
     loginStep.successLogin(DataHelper.getUser());
     projectsStep.openAddProjectDialogWindow();
     projectsStep.uploadImage(initFilePath());
-    Assert.assertTrue(checkSuccessUpload());
+    Assert.assertTrue(projectsStep.checkSuccessUpload());
 }
 
 
