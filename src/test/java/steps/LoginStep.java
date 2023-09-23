@@ -13,7 +13,7 @@ public class LoginStep extends BaseStep {
         super(driver);
     }
 
-    public ProjectsPage successLogin(Users users){
+    public ProjectsPage successLogin(Users users) {
         loginPage.login(users);
         return projectsPage;
     }

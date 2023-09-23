@@ -90,7 +90,14 @@ public class LoginTest extends BaseTest {
     }
 
 
+    @Test(description = "Проверка возможности создания проекта")
+    public void checkCreateNewProject(){
 
+        loginStep.successLogin(DataHelper.getUser());
+        projectsStep.createNewProject("first");
+       // Assert.assertTrue();
+
+    }
 
     @Test(description = "Проверка возможности удаления проекта")
     public void checkDeleteProject(){

@@ -11,7 +11,7 @@ import wrappers.Input;
 import java.util.List;
 
 public class ProjectsPage extends BasePage {
-    private final static String pagePath ="yaninalondon.testmo.net";
+    private final static String pagePath = "yaninalondon.testmo.net";
     private final By addProjectLocator = By.cssSelector(".ui.basic.compact.button");
     private final By boardAllProjectsLocator = By.cssSelector("tr div a");
     private final By logoLocator = By.cssSelector(".navbar__branding__logo");
@@ -36,7 +36,11 @@ public class ProjectsPage extends BasePage {
     private final By confirmDeleteProjectButtonLocator = By.xpath(("//button[@data-target='deleteButton']"));
     private final By projectDeletionProcessLocator = By.xpath(".//div[contains(@class, 'default-hidden')]");
     private final By emptyProjectNameLocator = By.xpath("//li[text()='The name field is required.']");
-
+    private final By uploadImageWindowLocator = By.xpath("//*[@class='admin-projects-dialog-avatar__action']");
+    private final By projectImageLocator = By.xpath("//*[@class='admin-projects-dialog-avatar__avatar']/descendant::img");
+    private final By fileUploadLocator = By.xpath("//input[@type='file']");
+    private final By createProjectDialogWindowLocator = By.xpath("//*[@class='dialog']");
+    private final By projectNameLocator = By.xpath("//input[@placeholder='Project name']");
     private elements.DialogBorder DialogBorder;
 
 
@@ -51,71 +55,109 @@ public class ProjectsPage extends BasePage {
     }
 
 
-    public WebElement getAddProject(){
+    public WebElement getAddProject() {
         return waitService.waitForExists(addProjectLocator);
     }
-    public List<WebElement> getBoardAllProjects(){
+
+    public List<WebElement> getBoardAllProjects() {
         return driver.findElements(boardAllProjectsLocator);
     }
-    public WebElement getLogo(){
+
+    public WebElement getLogo() {
         return driver.findElement(logoLocator);
     }
 
-    public DialogBorder getDialogBorder(){
+    public DialogBorder getDialogBorder() {
         return new DialogBorder(driver, dialogBorderLocator);
     }
-    public WebElement summaryInput()
-    {
+
+    public WebElement summaryInput() {
         return driver.findElement(borderDialogInputTextLocator);
     }
 
-    public WebElement waitProjectDialogWindow(){
+    public WebElement waitProjectDialogWindow() {
         return waitService.waitForExists(borderDialogInputNameLocator);
     }
 
-    public WebElement setNameProject(){
-        return  driver.findElement(borderDialogInputNameLocator);
+    public WebElement setNameProject() {
+        return driver.findElement(borderDialogInputNameLocator);
     }
-    public WebElement submitButton(){
+
+    public WebElement submitButton() {
         return driver.findElement(borderAddProjectLocator);
     }
-    public WebElement getPageHeaderLocator(){
+
+    public WebElement getPageHeaderLocator() {
         return waitService.waitForVisibility(pageHeaderLocator);
     }
 
 
-    public WebElement getDropDownMenu(){
+    public WebElement getDropDownMenu() {
         return driver.findElement(borderDropDownLocator);
     }
 
-    public WebElement getBorderAddProjectLButton(){
+    public WebElement getBorderAddProjectLButton() {
         return driver.findElement(borderAddProjectLocator);
     }
-    public WebElement getCreateProject(){
+
+    public WebElement getCreateProject() {
         return waitService.waitForExists(createProjectLocator);
     }
-    public WebElement deleteIcon(){
+
+    public WebElement deleteIcon() {
         return waitService.waitForVisibility(deleteIconLocator);
     }
-    public WebElement deleteProjectModalWindow(){
+
+    public WebElement deleteProjectModalWindow() {
         return waitService.waitForVisibility(deleteProjectModalWindowLocator);
     }
-    public WebElement deleteCheckBox(){
+
+    public WebElement deleteCheckBox() {
         return waitService.waitForVisibility(deleteCheckboxLocator);
     }
-    public Button confirmDeleteProjectButton(){
+
+    public Button confirmDeleteProjectButton() {
         return new Button(driver, confirmDeleteProjectButtonLocator);
     }
-    public WebElement getTableRowProjectName(String nameProject){
+
+    public WebElement getTableRowProjectName(String nameProject) {
         return driver.findElement(By.xpath("//tr[@data-name='{nameProject}']"));
     }
-    public WebElement findProjectDeletionProcess(String projectId){
+
+    public WebElement findProjectDeletionProcess(String projectId) {
         return waitService.waitForVisibility
                 (By.xpath("//tr[@data-id='{projectId}']/td[4]/div[contains(@class, 'default-hidden')]"));
 
     }
-    public WebElement getEmptyProjectNameLocator(){
-        return waitService.waitForVisibility(emptyProjectNameLocator);
+
+    public WebElement getEmptyProjectNameLocator() {
+        return driver.findElement(emptyProjectNameLocator);
+    }
+
+    public WebElement getUploadImageWindow() {
+        return waitService.waitForExists(uploadImageWindowLocator);
+    }
+
+    public WebElement getProjectImage() {
+        return waitService.waitForExists(projectImageLocator);
+    }
+
+    public WebElement getFileUpload() {
+        return waitService.waitForExists(fileUploadLocator);
+    }
+
+    public boolean checkSuccessUpload() {
+        return getProjectImage().getAttribute("src").contains("attachments");
+    }
+
+    public WebElement getCreateProjectDialogWindowLocator() {
+        return waitService.waitForExists(createProjectDialogWindowLocator);
+    }
+    public void addProjectClick() {
+        getBorderAddProjectLButton().click();
+    }
+    public WebElement getProjectNameLocator() {
+        return waitService.waitForExists(projectNameLocator);
     }
 
 }

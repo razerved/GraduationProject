@@ -5,6 +5,7 @@ import elements.DialogBorder;
 import models.Project;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import tests.gui.ProjectTest;
 
 public class ProjectsStep extends BaseStep {
 
@@ -55,12 +56,13 @@ public class ProjectsStep extends BaseStep {
         return projectsPage.getCreateProject().isDisplayed();
 
     }
+
     public boolean createNewProjectNegative(String nameProject) {
         projectsPage.getAddProject().click();
         projectsPage.waitProjectDialogWindow().isDisplayed();
         projectsPage.waitProjectDialogWindow().sendKeys(nameProject);
         projectsPage.submitButton().click();
-        return  projectsPage.getEmptyProjectNameLocator().isDisplayed();
+        return projectsPage.getEmptyProjectNameLocator().isDisplayed();
 
     }
 
@@ -75,21 +77,46 @@ public class ProjectsStep extends BaseStep {
 //        projectsPage.confirmDeleteProjectButton().click();
 //        return projectsPage.projectDeletionProcess().isDisplayed();
 
-public String deleteProject(Project project, String nameProject){
-    projectsPage.getAddProject().click();
-    projectsPage.waitProjectDialogWindow().isDisplayed();
-    projectsPage.waitProjectDialogWindow().sendKeys(nameProject);
-    projectsPage.submitButton().click();
-    var tableRow = projectsPage.getTableRowProjectName(project.getName());
-    var projectId = tableRow.getAttribute("data-id");
-    var deleteIcon = tableRow.findElement((By)projectsPage.deleteIcon());
-    deleteIcon.click();
+    public String deleteProject(Project project, String nameProject) {
+        projectsPage.getAddProject().click();
+        projectsPage.waitProjectDialogWindow().isDisplayed();
+        projectsPage.waitProjectDialogWindow().sendKeys(nameProject);
+        projectsPage.submitButton().click();
+        var tableRow = projectsPage.getTableRowProjectName(project.getName());
+        var projectId = tableRow.getAttribute("data-id");
+        var deleteIcon = tableRow.findElement((By) projectsPage.deleteIcon());
+        deleteIcon.click();
 
-    projectsPage.deleteCheckBox().click();
-    projectsPage.confirmDeleteProjectButton().click();
+        projectsPage.deleteCheckBox().click();
+        projectsPage.confirmDeleteProjectButton().click();
 
-    return projectId;
-
-}
+        return projectId;
 
     }
+    public void openAddProjectDialogWindow() {
+        projectsPage.addProjectClick();
+    }
+
+
+
+    public void uploadImage(String pathToFile) {
+        projectsPage.getAddProject().click();
+        projectsPage.waitProjectDialogWindow().isDisplayed();
+        projectsPage.getUploadImageWindow().click();
+        projectsPage.getFileUpload().sendKeys(pathToFile);
+    }
+
+
+    private static final String fileName = "anime-art-210822-1-576x1024.jpg";
+    private String initFilePath() {
+        String pathToFile = ProjectTest.class.getClassLoader().getResource(fileName).getPath();
+        return pathToFile.substring(1, pathToFile.length());
+    }
+    public void initProjectFields(Project project) {
+        projectsPage.getProjectNameLocator().sendKeys(project.getName());
+        uploadImage(project.getImagePath());
+        projectsPage.getBorderAddProjectLButton().click();
+    }
+
+
+}

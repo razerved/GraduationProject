@@ -56,7 +56,7 @@ public class ProjectTest extends BaseTest {
 
     @Test(description = "Проверка невозможности создания проекта с пустым названием")
     @Description("Negative create project")
-    public void checkCreateNewProjectNegative(){
+    public void checkCreateNewProjectNegative() {
         loginStep.successLogin(DataHelper.getUser());
         boolean isDisplayed = projectsStep.createNewProjectNegative("     ");
         Assert.assertTrue(isDisplayed);
@@ -79,4 +79,14 @@ public class ProjectTest extends BaseTest {
 //        var deleteIcon = projectsStep.projectsPage.findProjectDeletionProcess(projectId);
 //        Assert.assertTrue(deleteIcon != null);
 //    }
+
+@Test(description = "Тест на загрузку файла изображения во время создания проекта", groups = "positive")
+public void checkUploadFileTest() {
+    loginStep.successLogin(DataHelper.getUser());
+    projectsStep.openAddProjectDialogWindow();
+    projectsStep.uploadImage(initFilePath());
+    Assert.assertTrue(checkSuccessUpload());
+}
+
+
 }
