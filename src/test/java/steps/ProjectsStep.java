@@ -43,7 +43,10 @@ public class ProjectsStep extends BaseStep {
 
     }
 
-
+    public boolean checkOpenPopUpMenu(){
+        projectsPage.getPersonProfileSettings().click();
+        return projectsPage.getPopUpLinkMenu().isDisplayed();
+    }
 
 
 }

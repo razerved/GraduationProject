@@ -26,6 +26,8 @@ public class ProjectsPage extends BasePage {
     private final By borderInputFileLocator = By.xpath("//input[@type='file']");
     private elements.DialogBorder DialogBorder;
 
+    private final By personProfileSettingsLocator = By.cssSelector("div.avatar.avatar--person.avatar--32");
+    private final By popUpMenuLinkLocator = By.cssSelector("a.popup__menu__link-item");
 
     public ProjectsPage(WebDriver driver) {
         super(driver);
@@ -70,6 +72,14 @@ public class ProjectsPage extends BasePage {
 
     public WebElement getBorderAddProjectLButton(){
         return driver.findElement(borderAddProjectLocator);
+    }
+
+    public WebElement getPersonProfileSettings(){
+        return driver.findElement(personProfileSettingsLocator);
+    }
+
+    public WebElement getPopUpLinkMenu(){
+        return driver.findElement(popUpMenuLinkLocator);
     }
 
 }
