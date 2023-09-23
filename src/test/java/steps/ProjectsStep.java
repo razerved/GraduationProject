@@ -101,8 +101,6 @@ public class ProjectsStep extends BaseStep {
     }
 
     public void uploadImage(String pathToFile) {
-        projectsPage.getAddProject().click();
-        projectsPage.waitProjectDialogWindow().isDisplayed();
         projectsPage.getUploadImageWindow().click();
         projectsPage.getFileUpload().sendKeys(pathToFile);
     }

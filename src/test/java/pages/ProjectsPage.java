@@ -136,7 +136,7 @@ public class ProjectsPage extends BasePage {
     }
 
     public WebElement getUploadImageWindow() {
-        return driver.findElement(uploadImageWindowLocator);
+        return waitService.waitForExists(uploadImageWindowLocator);
     }
 
     public WebElement getProjectImage() {
