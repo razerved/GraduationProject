@@ -75,14 +75,14 @@ public class ProjectTest extends BaseTest {
 //        boolean isDeleted = projectsStep.deleteProject("second");
 //        Assert.assertTrue(isDeleted);
 
-//    @Test(description = "Проверка возможности удаления проекта")
-//    public void checkDeleteProject() {
-//        loginStep.successLogin(DataHelper.getUser());
-//        var project = projectsStep.createNewProject("second");
-//        var projectId = projectsStep.deleteProject(project, nameProject);
-//        var deleteIcon = projectsStep.projectsPage.findProjectDeletionProcess(projectId);
+    @Test(description = "Проверка возможности удаления проекта")
+    public void checkDeleteProject() {
+        loginStep.successLogin(DataHelper.getUser());
+        var project = projectsStep.createNewProject("second");
+       // var projectId = projectsStep.deleteProject(project, nameProject);
 //        Assert.assertTrue(deleteIcon != null);
-//    }
+
+    }
 
 @Test(description = "Тест на загрузку файла")
 public void checkUploadFileTest() {

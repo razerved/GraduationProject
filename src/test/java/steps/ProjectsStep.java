@@ -5,6 +5,7 @@ import elements.DialogBorder;
 import models.Project;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.ProjectsPage;
 import tests.gui.ProjectTest;
 
 public class ProjectsStep extends BaseStep {
@@ -109,6 +110,10 @@ public class ProjectsStep extends BaseStep {
         projectsPage.getProjectNameLocator().sendKeys(project.getName());
         uploadImage(project.getImagePath());
         projectsPage.getBorderAddProjectLButton().click();
+    }
+    public ProjectsPage createProject(Project project){
+        initProjectFields(project);
+        return projectsPage;
     }
 
 }

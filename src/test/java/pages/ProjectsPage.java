@@ -5,9 +5,12 @@ import elements.DialogBorder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import wrappers.Button;
 import wrappers.Input;
 
+import java.time.Duration;
 import java.util.List;
 
 public class ProjectsPage extends BasePage {
@@ -132,6 +135,8 @@ public class ProjectsPage extends BasePage {
     }
 
     public WebElement getEmptyProjectNameLocator() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(emptyProjectNameLocator));
         return driver.findElement(emptyProjectNameLocator);
     }
 
