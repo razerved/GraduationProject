@@ -1,6 +1,7 @@
 package steps;
 
 import base.BaseStep;
+
 import elements.DialogBorder;
 import models.Project;
 import org.openqa.selenium.By;
@@ -17,10 +18,7 @@ public class ProjectsStep extends BaseStep {
     public void choseProject(int project){
         projectsPage.getBoardAllProjects().get(project).click();
     }
-    public DialogBorder dialogBorderCheckout(){
-        projectsPage.getDialogBorder();
-        return dialogBorderCheckout();
-    }
+
 
     public String getSummaryInputDialog(){
         return (String) js.executeScript("return document.getElementsByTagName('textarea')[0].value");

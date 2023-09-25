@@ -1,7 +1,7 @@
 package pages;
 
 import base.BasePage;
-import elements.DialogBorder;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,6 +28,7 @@ public class ProjectsPage extends BasePage {
     private final By borderAddProjectLocator = By.cssSelector("button.ui.button.primary");
     private final By borderCancelProjectLocator = By.cssSelector("button.ui.button.dialog-hide");
     private final By borderInputFileLocator = By.xpath("//input[@type='file']");
+
     private final By pageHeaderLocator = By.cssSelector("div.dialog__header__content__title");
 
     private final By createProjectLocator = By.cssSelector("div.page-header__title");
