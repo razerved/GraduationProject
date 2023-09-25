@@ -1,11 +1,7 @@
 package tests.gui;
 
 import base.BaseTest;
-import configuration.ReadProperties;
-import dataHelper.DataHelper;
 import dataHelper.StaticProvider;
-import io.qameta.allure.Description;
-import io.qameta.allure.Issue;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

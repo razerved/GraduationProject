@@ -4,6 +4,10 @@ import org.testng.annotations.DataProvider;
 
 public class StaticProvider {
 
+    /**
+     * Как реализовать менее криво не рпидумал, зато работает!
+     * @return
+     */
     @DataProvider(name = "Check summary")
     public static Object[][] checkSummary(){
         return new Object[][]{

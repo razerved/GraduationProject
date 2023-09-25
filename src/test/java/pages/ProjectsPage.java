@@ -1,7 +1,7 @@
 package pages;
 
 import base.BasePage;
-import elements.DialogBorder;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,7 +24,7 @@ public class ProjectsPage extends BasePage {
     private final By borderAddProjectLocator = By.cssSelector("button.ui.button.primary");
     private final By borderCancelProjectLocator = By.cssSelector("button.ui.button.dialog-hide");
     private final By borderInputFileLocator = By.xpath("//input[@type='file']");
-    private elements.DialogBorder DialogBorder;
+
 
     private final By personProfileSettingsLocator = By.cssSelector("div.avatar.avatar--person.avatar--32");
     private final By popUpMenuLinkLocator = By.cssSelector("a.popup__menu__link-item");
@@ -50,9 +50,7 @@ public class ProjectsPage extends BasePage {
         return driver.findElement(logoLocator);
     }
 
-    public DialogBorder getDialogBorder(){
-        return new DialogBorder(driver, dialogBorderLocator);
-    }
+
     public WebElement summaryInput()
     {
         return driver.findElement(borderDialogInputTextLocator);
