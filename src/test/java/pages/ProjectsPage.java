@@ -5,16 +5,11 @@ import elements.DialogBorder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import wrappers.Button;
-import wrappers.Input;
 
-import java.time.Duration;
 import java.util.List;
 
 public class ProjectsPage extends BasePage {
-    private final static String pagePath = "yaninalondon.testmo.net";
+    private final static String pagePath ="yaninalondon.testmo.net";
     private final By addProjectLocator = By.cssSelector(".ui.basic.compact.button");
     private final By boardAllProjectsLocator = By.cssSelector("tr div a");
     private final By logoLocator = By.cssSelector(".navbar__branding__logo");
@@ -47,6 +42,8 @@ public class ProjectsPage extends BasePage {
     private final By addProjectButtonLocator = By.xpath("//*[@class='ui basic compact button']");
     private elements.DialogBorder DialogBorder;
 
+    private final By personProfileSettingsLocator = By.cssSelector("div.avatar.avatar--person.avatar--32");
+    private final By popUpMenuLinkLocator = By.cssSelector("a.popup__menu__link-item");
 
     public ProjectsPage(WebDriver driver) {
         super(driver);
@@ -163,6 +160,16 @@ public class ProjectsPage extends BasePage {
     }
     public WebElement getAddProjectButtonLocator(){
         return waitService.waitForExists(addProjectButtonLocator);
+    }
+
+}
+
+    public WebElement getPersonProfileSettings(){
+        return driver.findElement(personProfileSettingsLocator);
+    }
+
+    public WebElement getPopUpLinkMenu(){
+        return driver.findElement(popUpMenuLinkLocator);
     }
 
 }

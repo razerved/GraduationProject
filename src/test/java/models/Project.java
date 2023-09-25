@@ -1,56 +1,24 @@
 package models;
-import lombok.Builder;
-import lombok.Data;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.gson.annotations.SerializedName;
+import lombok.*;
 
 @Data
-//@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Project {
-    protected String name;
-    protected String summary;
-    protected String imagePath;
-    public Project() {
-    }
-    public String getName() {
-        return name;
-    }
 
-    public String getSummary() {
-        return summary;
-    }
+    @SerializedName(value = "id")
+    @JsonProperty("id")
+    private int id;
 
-    public String getImagePath() {
-        return imagePath;
-    }
+    @SerializedName(value = "name")
+    @JsonProperty("name")
+    private String name;
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
-    public static class Builder {
-        private Project project;
-
-        public Builder() {
-            this.project = new Project();
-        }
-
-        public Builder withName(String name) {
-            project.name = name;
-            return this;
-        }
-
-        public Builder withSummary(String summary) {
-            project.summary = summary;
-            return this;
-        }
-
-        public Builder withImagePath(String imagePath) {
-            project.imagePath = imagePath;
-            return this;
-        }
-
-        public Project build() {
-            return project;
-        }
-    }
 
 }
