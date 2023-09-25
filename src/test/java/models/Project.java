@@ -20,5 +20,8 @@ public class Project {
     @JsonProperty("name")
     private String name;
 
+    protected String summary;
+    protected String imagePath;
+
 
 }

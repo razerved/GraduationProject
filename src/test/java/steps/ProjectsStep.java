@@ -2,7 +2,10 @@ package steps;
 
 import base.BaseStep;
 import elements.DialogBorder;
+import models.Project;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.ProjectsPage;
 
 public class ProjectsStep extends BaseStep {
 
