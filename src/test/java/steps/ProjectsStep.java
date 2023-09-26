@@ -2,41 +2,46 @@ package steps;
 
 import base.BaseStep;
 
-import elements.DialogBorder;
 import models.Project;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import pages.LoginPage;
 import pages.ProjectsPage;
 
 public class ProjectsStep extends BaseStep {
+    Logger logger = LogManager.getLogger(LoginPage.class);
 
     public ProjectsStep(WebDriver driver) {
         super(driver);
     }
 
 
-    public void choseProject(int project){
+    public void choseProject(int project) {
         projectsPage.getBoardAllProjects().get(project).click();
     }
 
 
-    public String getSummaryInputDialog(){
+    public String getSummaryInputDialog() {
         return (String) js.executeScript("return document.getElementsByTagName('textarea')[0].value");
     }
 
-    public void setSummaryText(String summary){
+    public void setSummaryText(String summary) {
         projectsPage.getAddProject().click();
         projectsPage.waitProjectDialogWindow().isDisplayed();
         projectsPage.summaryInput().sendKeys(summary);
+        logger.info("send summary: " + summary);
     }
-    public void addNewProjectWhitSummary(String nameProject, String summary){
+
+    public void addNewProjectWhitSummary(String nameProject, String summary) {
         projectsPage.getAddProject().click();
         projectsPage.waitProjectDialogWindow().isDisplayed();
         projectsPage.setNameProject().sendKeys(nameProject);
         projectsPage.summaryInput().sendKeys(summary);
     }
 
-    public void addNewProjectWhitOutSummary(String nameProject){
+    public void addNewProjectWhitOutSummary(String nameProject) {
         projectsPage.getAddProject().click();
         projectsPage.waitProjectDialogWindow().isDisplayed();
         projectsPage.setNameProject().sendKeys(nameProject);
@@ -52,7 +57,8 @@ public class ProjectsStep extends BaseStep {
         return projectsPage.getCreateProject().isDisplayed();
 
     }
-    public boolean checkOpenPopUpMenu(){
+
+    public boolean checkOpenPopUpMenu() {
         projectsPage.getPersonProfileSettings().click();
         return projectsPage.getPopUpLinkMenu().isDisplayed();
     }
@@ -87,15 +93,17 @@ public class ProjectsStep extends BaseStep {
         var deleteIcon = tableRow.findElement((By) projectsPage.deleteIcon());
         deleteIcon.click();
 
-        projectsPage.deleteCheckBox().click();
+        projectsPage.clickCheckBox().selectClickCheckBox();
         projectsPage.confirmDeleteProjectButton().click();
 
         return projectId;
 
     }
+
     public void openAddProjectDialogWindow() {
         projectsPage.addProjectClick();
     }
+
     public boolean checkSuccessUpload() {
         return projectsPage.getProjectImage().getAttribute("src").contains("attachments");
     }
@@ -103,6 +111,7 @@ public class ProjectsStep extends BaseStep {
     public void uploadImage(String pathToFile) {
         projectsPage.getUploadImageWindow().click();
         projectsPage.getFileUpload().sendKeys(pathToFile);
+        logger.info("path file to send: " + pathToFile);
     }
 
     public void initProjectFields(Project project) {
@@ -110,9 +119,25 @@ public class ProjectsStep extends BaseStep {
         uploadImage(project.getImagePath());
         projectsPage.getBorderAddProjectLButton().click();
     }
-    public ProjectsPage createProject(Project project){
+
+    public ProjectsPage createProject(Project project) {
         initProjectFields(project);
         return projectsPage;
     }
+
+    public boolean newDeleteProject() {
+        projectsPage.getAdminButton().click();
+        projectsPage.getProjectPanel().get(0).click();
+        String nameProjectDelete = projectsPage.getNameOfProjects().get(0).getText();
+        logger.info("name of delete project is: " + nameProjectDelete);
+
+        projectsPage.getDeleteProgetByIndex().get(0).click();
+        projectsPage.clickCheckBox().selectClickCheckBox();
+        projectsPage.confirmDeleteProjectButton().click();
+        boolean haveOrNot = projectsPage.getNameOfProjects().stream().filter(x->x.getText().equals(nameProjectDelete)).findAny().isPresent();
+        return haveOrNot;
+
+    }
+
 
 }

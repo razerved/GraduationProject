@@ -8,12 +8,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import wrappers.Button;
+import wrappers.CheckBox;
 
 import java.time.Duration;
 import java.util.List;
 
 public class ProjectsPage extends BasePage {
-    private final static String pagePath ="yaninalondon.testmo.net";
+    private final static String pagePath ="/admin/projects";
     private final By addProjectLocator = By.cssSelector(".ui.basic.compact.button");
     private final By boardAllProjectsLocator = By.cssSelector("tr div a");
     private final By logoLocator = By.cssSelector(".navbar__branding__logo");
@@ -45,15 +46,25 @@ public class ProjectsPage extends BasePage {
     private final By createProjectDialogWindowLocator = By.xpath("//*[@class='dialog']");
     private final By projectNameLocator = By.xpath("//input[@placeholder='Project name']");
     private final By addProjectButtonLocator = By.xpath("//*[@class='ui basic compact button']");
-    private elements.DialogBorder DialogBorder;
 
     private final By personProfileSettingsLocator = By.cssSelector("div.avatar.avatar--person.avatar--32");
     private final By popUpMenuLinkLocator = By.cssSelector("a.popup__menu__link-item");
+
+    private final By adminButtonLocator = By.cssSelector("a[data-content='Admin']");
+    private final By projectPanelLocator = By.cssSelector("a[href|='https://yaninalondon.testmo.net/admin/projects']");
+    private final By projectsTableLocator = By.cssSelector("[data-target='components--table.table']");
+
+    private final By deleteProjectLocator = By.cssSelector("tr.table__header ~ tr > td> div.tooltip");
+
+    private final By nameOfProjects = By.cssSelector("a[data-action='edit']");
 
     public ProjectsPage(WebDriver driver) {
         super(driver);
     }
 
+    public void openPageByUrl() {
+        super.openPageByUrl(pagePath);
+    }
 
     @Override
     protected By getPageIdentifier() {
@@ -73,9 +84,6 @@ public class ProjectsPage extends BasePage {
         return driver.findElement(logoLocator);
     }
 
-    public DialogBorder getDialogBorder() {
-        return new DialogBorder(driver, dialogBorderLocator);
-    }
 
     public WebElement summaryInput() {
         return driver.findElement(borderDialogInputTextLocator);
@@ -118,8 +126,8 @@ public class ProjectsPage extends BasePage {
         return waitService.waitForVisibility(deleteProjectModalWindowLocator);
     }
 
-    public WebElement deleteCheckBox() {
-        return waitService.waitForVisibility(deleteCheckboxLocator);
+    public CheckBox clickCheckBox() {
+        return new CheckBox(driver, deleteCheckboxLocator);
     }
 
     public Button confirmDeleteProjectButton() {
@@ -176,4 +184,19 @@ public class ProjectsPage extends BasePage {
         return driver.findElement(popUpMenuLinkLocator);
     }
 
+
+    public List<WebElement> getProjectPanel(){
+        return waitService.waitForAllVisibleElementsLocatedBy(projectPanelLocator);
+    }
+    public WebElement getAdminButton(){
+        return driver.findElement(adminButtonLocator);
+    }
+
+    public List<WebElement> getDeleteProgetByIndex(){
+        return waitService.waitForAllVisibleElementsLocatedBy(deleteProjectLocator);
+    }
+
+    public List<WebElement> getNameOfProjects(){
+        return waitService.waitForAllVisibleElementsLocatedBy(nameOfProjects);
+    }
 }

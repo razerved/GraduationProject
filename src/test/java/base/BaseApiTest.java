@@ -23,11 +23,4 @@ public class BaseApiTest {
     }
 
 
-    /*@AfterTest
-    public void tearDown(ITestResult result) {
-        if (!result.isSuccess()){
-            System.out.println("Make screenshot");
-        }
-    }*/
-
 }

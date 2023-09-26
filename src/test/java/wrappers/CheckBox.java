@@ -5,21 +5,24 @@ import org.openqa.selenium.WebDriver;
 
 public class CheckBox {
     private UIElement uiElement;
+    private WebDriver driver;
+    public CheckBox(WebDriver driver, UIElement uiElement) {
+        this.uiElement = uiElement;
+        this.driver = driver;
+    }
 
     public CheckBox(WebDriver driver, By by) {
         this.uiElement = new UIElement(driver, by);
+        this.driver = driver;
     }
 
-    public void set() {
-        setFlag(true);
+    public void selectClickCheckBox() {
+        if (!uiElement.isSelected()) {
+            uiElement.click();
+        }
     }
-
-    public void remove() {
-        setFlag(false);
-    }
-
-    public void setFlag(boolean flag) {
-        if (!isSelected() && flag) {
+    public void removeClickCheckBox() {
+        if (uiElement.isSelected()) {
             uiElement.click();
         }
     }

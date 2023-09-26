@@ -88,6 +88,9 @@ public class UIElement implements WebElement {
     public UIElement findElement(By by) {
         return new UIElement(driver, webElement.findElement(by));
     }
+    public UIElement findUIElement(By by){
+        return new UIElement(driver, webElement.findElement(by));
+    }
 
     @Override
     public boolean isDisplayed() {
