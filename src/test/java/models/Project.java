@@ -7,7 +7,6 @@ import lombok.*;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Project {
@@ -23,5 +22,32 @@ public class Project {
     protected String summary;
     protected String imagePath;
 
+    public Project() {
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public static class Builder {
+        private Project project;
+
+        public Builder() {
+            this.project = new Project();
+        }
+
+        public Builder withName(String name) {
+            project.name = name;
+            return this;
+        }
+
+        public Builder withSummary(String summary) {
+            project.summary = summary;
+            return this;
+        }
+
+        public Project build() {
+            return project;
+        }
+    }
 }

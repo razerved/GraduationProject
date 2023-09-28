@@ -2,6 +2,7 @@ package tests.api;
 
 import adapters.ProjectAdapter;
 import base.BaseApiTest;
+import com.google.gson.Gson;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 import utils.Endpoints;
@@ -10,6 +11,8 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 public class ApiTest extends BaseApiTest {
+
+    Gson gson = new Gson();
 
     @Test(description = "еще не придумал")
     public void testRun() {
@@ -20,6 +23,15 @@ public class ApiTest extends BaseApiTest {
                 .log().body();
     }
 
+    @Test(description = "Получение несуществующего проекта")
+    public void testFindNonExistentProject(){
+        given()
+                .get(Endpoints.GET_PROJECTS_Negative)
+                .then()
+                .log().status()
+                .statusCode(HttpStatus.SC_NOT_FOUND);
+
+    }
 
     @Test(description = "Get все проекты, проверка в теле есть проект name=ProjectForAPI")
     public void testProject() {
@@ -57,6 +69,4 @@ public class ApiTest extends BaseApiTest {
                 .log().all()
                 .statusCode(HttpStatus.SC_NO_CONTENT);
     }
-
-
 }

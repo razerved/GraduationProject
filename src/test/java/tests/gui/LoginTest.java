@@ -1,5 +1,6 @@
 package tests.gui;
 
+import base.InvokedListener;
 import configuration.ReadProperties;
 import dataHelper.DataHelper;
 import factory.BrowserFactory;
@@ -12,18 +13,20 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import steps.LoginStep;
 
-
+@Listeners(InvokedListener.class)
 public class LoginTest  {
     protected WebDriver driver;
     protected LoginStep loginStep;
 
-
+    public static void setDriverToContext(ITestContext iTestContext, WebDriver driver){
+        iTestContext.setAttribute("WebDriver", driver);
+    }
     @BeforeMethod
     public void set(ITestContext iTestContext){
         BrowserFactory browserFactory = new BrowserFactory();
         driver = browserFactory.getDriver();
         loginStep = new LoginStep(driver);
-
+        this.setDriverToContext(iTestContext, driver);
     }
 
     @Test(description = "Кейс Авторизация")

@@ -32,21 +32,11 @@ public class WaitService {
         return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
-    public WebElement waitForVisibility(By element) {
-        return wait.until(ExpectedConditions.visibilityOf((WebElement) element));
-    }
-
-    public WebElement waitForVisibilityLocatedBy(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
 
     public List<WebElement> waitForAllVisibleElementsLocatedBy(By locator) {
         return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 
-    public Boolean waitForElementInvisible(WebElement element) {
-        return wait.until(ExpectedConditions.invisibilityOf(element));
-    }
 
     public WebElement fluentWaitForElement(By locator) {
         Wait<WebDriver> fluent = new FluentWait<>(driver)
