@@ -54,6 +54,7 @@ public class BrowserFactory {
         chromeOptions.addArguments("--silent");
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.addArguments("--incognito");
+        chromeOptions.setBinary("C:\\Users\\anduser\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe");
 
         return chromeOptions;
     }
