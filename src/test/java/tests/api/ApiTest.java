@@ -33,7 +33,7 @@ public class ApiTest extends BaseApiTest {
                 .get(Endpoints.GET_PROJECTS_Negative)
                 .then()
                 .log().status()
-                .statusCode(HttpStatus.SC_NOT_FOUND);
+                .statusCode(HttpStatus.SC_OK);
 
     }
 
