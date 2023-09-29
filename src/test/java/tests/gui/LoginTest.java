@@ -5,6 +5,7 @@ import configuration.ReadProperties;
 import dataHelper.DataHelper;
 import factory.BrowserFactory;
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -13,6 +14,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import steps.LoginStep;
 
+@Feature("LOGIN TESTS")
 @Listeners(InvokedListener.class)
 public class LoginTest  {
     protected WebDriver driver;

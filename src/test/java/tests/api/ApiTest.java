@@ -3,18 +3,21 @@ package tests.api;
 import adapters.ProjectAdapter;
 import base.BaseApiTest;
 import com.google.gson.Gson;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 import utils.Endpoints;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+@Feature("API TESTS")
 
 public class ApiTest extends BaseApiTest {
 
     Gson gson = new Gson();
 
-    @Test(description = "еще не придумал")
+    @Test(description = "Получение пользователя")
     public void testRun() {
         given()
                 .get(Endpoints.GET_USER)
@@ -24,6 +27,7 @@ public class ApiTest extends BaseApiTest {
     }
 
     @Test(description = "Получение несуществующего проекта")
+    @Issue("BUG-3322")
     public void testFindNonExistentProject(){
         given()
                 .get(Endpoints.GET_PROJECTS_Negative)
@@ -33,7 +37,7 @@ public class ApiTest extends BaseApiTest {
 
     }
 
-    @Test(description = "Get все проекты, проверка в теле есть проект name=ProjectForAPI")
+    @Test(description = "Получение всех проектов")
     public void testProject() {
         given()
                 .get(Endpoints.GET_PROJECT)
@@ -43,8 +47,8 @@ public class ApiTest extends BaseApiTest {
                 .and().body("result.name", hasItems("ProjectForAPI"));
     }
 
-    @Test
-    public void test3(){
+    @Test(description = "Получение рана")
+    public void testGetRuns(){
         given()
                 .get("/api/v1/automation/runs/1")
                 .then().log().body();

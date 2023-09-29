@@ -3,11 +3,12 @@ package tests.gui;
 import base.BaseTest;
 import dataHelper.StaticProvider;
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
 import models.Project;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
+@Feature("All UI TESTS")
 public class ProjectTest extends BaseTest {
     private static final String fileName = "anime-art-210822-1-576x1024.jpg";
 
@@ -15,7 +16,6 @@ public class ProjectTest extends BaseTest {
         String pathToFile = ProjectTest.class.getClassLoader().getResource(fileName).getPath();
         return pathToFile.substring(1, pathToFile.length());
     }
-
 
     @Test(dataProvider = "Check summary", dataProviderClass = StaticProvider.class,
             description = "Проверка поля на граничные значения", threadPoolSize = 3)
@@ -45,7 +45,7 @@ public class ProjectTest extends BaseTest {
     }
 
 
-@Test(description = "Тест на загрузку файла")
+@Test(description = "Проверка на загрузку файла")
 public void checkUploadFileTest(){
     projectsStep.openAddProjectDialogWindow();
     projectsStep.uploadImage(initFilePath());
@@ -57,7 +57,7 @@ public void checkUploadFileTest(){
         Assert.assertTrue(projectsStep.checkOpenPopUpMenu());
     }
 
-    @Test(description = "в тесте идет удаление первого из списка проектов с проверкой на последующие вхождение удаленного по имени")
+    @Test(description = "Проверка удаления первого в списке проекта")
     public void newDelete(){
         Assert.assertFalse(projectsStep.newDeleteProject(), "Проект с таким именем есть в списке");
     }
