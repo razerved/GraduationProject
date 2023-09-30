@@ -14,8 +14,6 @@ public class DropDown {
     private List<WebElement> numberList = new ArrayList<>();
     private List<String> textList = new ArrayList<>();
 
-    //ToDo: добавить селектор на Дроп, дописать раскладку
-    // Перенести классы  из папки elements в Янинину Wrappers
     public DropDown(WebDriver driver, By by) {
         this.driver = driver;
         this.by = by;
